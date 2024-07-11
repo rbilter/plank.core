@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Plank.Core.Contracts</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>BilterSoftware Developers</Authors>
+    <Company>BilterSoftware</Company>
+    <Product>Plank.Core.Contracts</Product>
+    <Description>A brief description of what your package does.</Description>
+    <RepositoryUrl>URL to your source repository</RepositoryUrl>
+    <PackageTags>Plank;Core;Contracts</PackageTags>
+    <PackageReleaseNotes>Initial release of Plank.Core.Contracts.</PackageReleaseNotes>
+    <!-- Include symbols in the NuGet package for debugging -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>  
+  </PropertyGroup>
+
+</Project>
