@@ -1,12 +1,19 @@
 ﻿using FluentAssertions;
+using Plank.Core.Tests.Fixtures;
 using Plank.Core.Tests.Helpers.Entities;
 using Plank.Core.Tests.Helpers.Validators;
 using Plank.Core.Validators;
 
 namespace Plank.Core.Tests.Validators
 {
-    public class ValidatorFactoryTests
+    [Collection(nameof(PlankConfigurationFixture))]
+    public sealed class ValidatorFactoryTests : IClassFixture<PlankConfigurationFixture>
     {
+        public ValidatorFactoryTests(PlankConfigurationFixture _)
+        {
+
+        }
+
         [Fact]
         public void CreateInstance_FluentValidators()
         {

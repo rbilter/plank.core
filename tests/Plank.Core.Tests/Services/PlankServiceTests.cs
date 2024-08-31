@@ -4,17 +4,19 @@ using FluentAssertions;
 using Moq;
 using Plank.Core.Data;
 using Plank.Core.Services;
+using Plank.Core.Tests.Fixtures;
 using Plank.Core.Tests.Helpers;
 using Plank.Core.Tests.Helpers.Entities;
 using X.PagedList;
 
 namespace Plank.Core.Tests.Services
 {
-    public class PlankServiceTests
+    [Collection(nameof(PlankConfigurationFixture))]
+    public class PlankServiceTests : IClassFixture<PlankConfigurationFixture>
     {
         private readonly Mock<ILogger> _logger;
 
-        public PlankServiceTests()
+        public PlankServiceTests(PlankConfigurationFixture _)
         {
             _logger = new Mock<ILogger>();
         }

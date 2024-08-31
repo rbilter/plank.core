@@ -34,12 +34,12 @@ namespace Plank.Core.Validators
 
         private static void LoadValidators()
         {
-            var filter = new List<string> { "microsoft", "system", "mscorlib", "xunit" };
-            var asm = AppDomain.CurrentDomain.GetAssemblies().Where(a => !filter.Any(f => a.FullName.IndexOf(f, StringComparison.OrdinalIgnoreCase) >= 0) && !a.IsDynamic);
-            var allTypes = asm.SelectMany(a => a.GetExportedTypes()).Where(t => t.IsClass && !t.IsAbstract);
+            var allTypes = PlankConfiguration
+                .GetRegisteredAssemblies()
+                .SelectMany(a => a.GetExportedTypes())
+                .Where(t => t.IsClass && !t.IsAbstract);
 
-            var types = allTypes.Where(t => t.GetInterface("IEntityValidator`1") != null && !t.IsAbstract).ToList();
-
+            var types = allTypes.Where(t => t.GetInterfaces().Any(i => i.Name == "IEntityValidator`1"));
             foreach (var type in types)
             {
                 try
@@ -59,7 +59,7 @@ namespace Plank.Core.Validators
 
             types = allTypes.Where(t => t.BaseType.IsGenericType 
                     && t.BaseType.GetGenericTypeDefinition() == typeof(AbstractValidator<>)
-                    && !t.ContainsGenericParameters).ToList();
+                    && !t.ContainsGenericParameters);
 
             var fvType = typeof(FluentValidatorAdapter<>);
             foreach (var type in types)
