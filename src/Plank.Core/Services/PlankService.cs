@@ -30,7 +30,7 @@ namespace Plank.Core.Services
             _defaultNullParameterMessage = "Value cannot be null or empty.\r\nParameter name: {0}";
         }
 
-        public async Task<PlankPostResponse<TEntity>> AddAsync(TEntity item)
+        public async Task<PlankPostResponse<TEntity>> Add(TEntity item)
         {
             _logger.InfoMessage(item.ToJson());
 
@@ -39,7 +39,7 @@ namespace Plank.Core.Services
             {
                 try
                 {
-                    await _repository.AddAsync(item).ConfigureAwait(false);
+                    await _repository.Add(item).ConfigureAwait(false);
                 }
                 catch (DataException e)
                 {
@@ -64,7 +64,7 @@ namespace Plank.Core.Services
             return results;
         }
 
-        public async Task<PlankBulkPostResponse<TEntity>> BulkAddAsync(IEnumerable<TEntity> items)
+        public async Task<PlankBulkPostResponse<TEntity>> BulkAdd(IEnumerable<TEntity> items)
         {
             _logger.InfoMessage(items.ToJson());
 
@@ -74,7 +74,7 @@ namespace Plank.Core.Services
                 try
                 {
                     var itemsToSave = validation.Where(l => l.ValidationResults.IsValid).Select(l => l.Item);
-                    await _repository.BulkAddAsync(itemsToSave).ConfigureAwait(false);
+                    await _repository.BulkAdd(itemsToSave).ConfigureAwait(false);
                 }
                 catch (DataException e)
                 {
@@ -94,16 +94,16 @@ namespace Plank.Core.Services
             return new PlankBulkPostResponse<TEntity>(validation);
         }
 
-        public async Task<PlankDeleteResponse> DeleteAsync(int id)
+        public async Task<PlankDeleteResponse> Delete(int id)
         {
             _logger.InfoMessage(id);
 
             var validation = new ValidationResults();
             try
             {
-                if (await _repository.GetAsync(id).ConfigureAwait(false) != null)
+                if (await _repository.Get(id).ConfigureAwait(false) != null)
                 {
-                    await _repository.DeleteAsync(id).ConfigureAwait(false);
+                    await _repository.Delete(id).ConfigureAwait(false);
                 }
             }
             catch (DataException e)
@@ -123,14 +123,14 @@ namespace Plank.Core.Services
             return results;
         }
 
-        public async Task<PlankGetResponse<TEntity>> GetAsync(int id)
+        public async Task<PlankGetResponse<TEntity>> Get(int id)
         {
             _logger.InfoMessage(id);
             PlankGetResponse<TEntity> result;
 
             try
             {
-                var item = await _repository.GetAsync(id).ConfigureAwait(false);
+                var item = await _repository.Get(id).ConfigureAwait(false);
                 result = new PlankGetResponse<TEntity>(item)
                 {
                     IsValid = true
@@ -150,7 +150,7 @@ namespace Plank.Core.Services
             return result;
         }
 
-        public async Task<PlankEnumerableResponse<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>> includes, int pageNumber, int pageSize)
+        public async Task<PlankEnumerableResponse<TEntity>> Search(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>> includes, int pageNumber, int pageSize)
         {
             expression ??= (f => true);
 
@@ -160,7 +160,7 @@ namespace Plank.Core.Services
             PlankEnumerableResponse<TEntity> result = null;
             try
             {
-                var pagedList = await _repository.SearchAsync(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+                var pagedList = await _repository.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
                 result = Mapping<TEntity>.Mapper.Map<PlankEnumerableResponse<TEntity>>(pagedList);
                 result.IsValid = true;
             }
@@ -178,7 +178,7 @@ namespace Plank.Core.Services
             return result;
         }
 
-        public async Task<PlankPostResponse<TEntity>> UpdateAsync(TEntity item)
+        public async Task<PlankPostResponse<TEntity>> Update(TEntity item)
         {
             _logger.InfoMessage(item.ToJson());
 
@@ -188,7 +188,7 @@ namespace Plank.Core.Services
             {
                 try
                 {
-                    existing = await _repository.GetAsync(item.Id).ConfigureAwait(false);
+                    existing = await _repository.Get(item.Id).ConfigureAwait(false);
                     if (existing != null)
                     {
                         foreach (var p in item.GetProperties())
@@ -196,7 +196,7 @@ namespace Plank.Core.Services
                             p.SetValue(existing, p.GetValue(item));
                         };
 
-                        await _repository.UpdateAsync(existing).ConfigureAwait(false);
+                        await _repository.Update(existing).ConfigureAwait(false);
                     }
                     else
                     {
@@ -231,7 +231,7 @@ namespace Plank.Core.Services
             return results;
         }
 
-        public async Task<PlankPostResponse<TEntity>> UpdateAsync(TEntity item, params Expression<Func<TEntity, object>>[] properties)
+        public async Task<PlankPostResponse<TEntity>> Update(TEntity item, params Expression<Func<TEntity, object>>[] properties)
         {
             _logger.InfoMessage(item.ToJson());
 
@@ -264,7 +264,7 @@ namespace Plank.Core.Services
             {
                 try
                 {
-                    existing = await _repository.GetAsync(item.Id).ConfigureAwait(false);
+                    existing = await _repository.Get(item.Id).ConfigureAwait(false);
                     if (existing != null)
                     {
                         // Assign values from item to the existing entity
@@ -283,7 +283,7 @@ namespace Plank.Core.Services
                         validation = item.Validate();
                         if (validation.IsValid)
                         {
-                            await _repository.UpdateAsync(existing).ConfigureAwait(false);
+                            await _repository.Update(existing).ConfigureAwait(false);
                         }
                     }
                     else

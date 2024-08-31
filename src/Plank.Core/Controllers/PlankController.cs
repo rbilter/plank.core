@@ -19,27 +19,27 @@ namespace Plank.Core.Controllers
             _service = new PlankService<TEntity>(repo, logger);
         }
 
-        public async Task<PlankPostResponse<TEntity>> AddAsync(TEntity entity)
+        public async Task<PlankPostResponse<TEntity>> Add(TEntity entity)
         {
-            return await _service.AddAsync(entity).ConfigureAwait(false);
+            return await _service.Add(entity).ConfigureAwait(false);
         }
 
-        public async Task<PlankBulkPostResponse<TEntity>> BulkAddAsync(IEnumerable<TEntity> entities)
+        public async Task<PlankBulkPostResponse<TEntity>> BulkAdd(IEnumerable<TEntity> entities)
         {
-            return await _service.BulkAddAsync(entities).ConfigureAwait(false);
+            return await _service.BulkAdd(entities).ConfigureAwait(false);
         }
 
-        public async Task<PlankDeleteResponse> DeleteAsync(int id)
+        public async Task<PlankDeleteResponse> Delete(int id)
         {
-            return await _service.DeleteAsync(id).ConfigureAwait(false);
+            return await _service.Delete(id).ConfigureAwait(false);
         }
 
-        public async Task<PlankGetResponse<TEntity>> GetAsync(int id)
+        public async Task<PlankGetResponse<TEntity>> Get(int id)
         {
-            return await _service.GetAsync(id).ConfigureAwait(false);
+            return await _service.Get(id).ConfigureAwait(false);
         }
 
-        public async Task<PlankEnumerableResponse<TEntity>> SearchAsync(ISearchBuilder<TEntity> builder)
+        public async Task<PlankEnumerableResponse<TEntity>> Search(ISearchBuilder<TEntity> builder)
         {
             _ = builder ?? throw new ArgumentNullException(nameof(builder));
 
@@ -48,17 +48,17 @@ namespace Plank.Core.Controllers
             var pageNumber = builder.PageNumber;
             var pageSize = builder.PageSize;
 
-            return await _service.SearchAsync(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+            return await _service.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
         }
 
-        public async Task<PlankPostResponse<TEntity>> UpdateAsync(TEntity entity)
+        public async Task<PlankPostResponse<TEntity>> Update(TEntity entity)
         {
-            return await _service.UpdateAsync(entity).ConfigureAwait(false);
+            return await _service.Update(entity).ConfigureAwait(false);
         }
 
-        public async Task<PlankPostResponse<TEntity>> UpdateAsync(TEntity entity, params Expression<Func<TEntity, object>>[] properties)
+        public async Task<PlankPostResponse<TEntity>> Update(TEntity entity, params Expression<Func<TEntity, object>>[] properties)
         {
-            return await _service.UpdateAsync(entity, properties).ConfigureAwait(false);
+            return await _service.Update(entity, properties).ConfigureAwait(false);
         }
     }
 }

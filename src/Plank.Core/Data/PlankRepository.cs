@@ -11,38 +11,38 @@ namespace Plank.Core.Data
 
         public IRepository<TEntity> NextRepository { get; private set; } = new EndRepository<TEntity>();
 
-        public async Task AddAsync(TEntity entity)
+        public async Task Add(TEntity entity)
         {
-            await NextRepository.AddAsync(entity).ConfigureAwait(false);
+            await NextRepository.Add(entity).ConfigureAwait(false);
 
             _context.Set<TEntity>().Add(entity);
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChanges().ConfigureAwait(false);
             _context.DetachAllEntities();
         }
 
-        public async Task BulkAddAsync(IEnumerable<TEntity> entities)
+        public async Task BulkAdd(IEnumerable<TEntity> entities)
         {
-            await NextRepository.BulkAddAsync(entities).ConfigureAwait(false);
+            await NextRepository.BulkAdd(entities).ConfigureAwait(false);
 
             _context.Set<TEntity>().AddRange(entities);
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChanges().ConfigureAwait(false);
             _context.DetachAllEntities();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task Delete(int id)
         {
-            await NextRepository.DeleteAsync(id).ConfigureAwait(false);
+            await NextRepository.Delete(id).ConfigureAwait(false);
 
             var item = await _context.Set<TEntity>().SingleOrDefaultAsync(i => i.Id == id).ConfigureAwait(false);
             if (item == null) { return; }
             
             _context.Set<TEntity>().Attach(item);
             _context.Set<TEntity>().Remove(item);
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChanges().ConfigureAwait(false);
             _context.DetachAllEntities();
         }
 
-        public async Task<TEntity> GetAsync(int id)
+        public async Task<TEntity> Get(int id)
         {
             var result = await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(i => i.Id == id).ConfigureAwait(false);
             if (result != null)
@@ -50,7 +50,7 @@ namespace Plank.Core.Data
                 return result;
             }
 
-            return await NextRepository.GetAsync(id).ConfigureAwait(false);
+            return await NextRepository.Get(id).ConfigureAwait(false);
         }
 
         public IRepository<TEntity> RegisterNext(IRepository<TEntity> repository)
@@ -59,7 +59,7 @@ namespace Plank.Core.Data
             return NextRepository;
         }
 
-        public async Task<IPagedList<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>>? includes = null, int pageNumber = 1, int pageSize = 10)
+        public async Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>>? includes = null, int pageNumber = 1, int pageSize = 10)
         {
             var query = _context.Set<TEntity>().AsNoTracking().Where(expression);
 
@@ -77,15 +77,15 @@ namespace Plank.Core.Data
                 return result;
             }
 
-            return await NextRepository.SearchAsync(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+            return await NextRepository.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public async Task Update(TEntity entity)
         {
-            await NextRepository.UpdateAsync(entity).ConfigureAwait(false);
+            await NextRepository.Update(entity).ConfigureAwait(false);
 
             _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChanges().ConfigureAwait(false);
             _context.DetachAllEntities();
         }
     }

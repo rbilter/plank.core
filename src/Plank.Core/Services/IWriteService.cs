@@ -5,14 +5,14 @@ namespace Plank.Core.Services
 {
     public interface IWriteService<T> where T : new()
     {
-        Task<PlankPostResponse<T>> AddAsync(T item);
+        Task<PlankPostResponse<T>> Add(T item);
 
-        Task<PlankBulkPostResponse<T>> BulkAddAsync(IEnumerable<T> items);
+        Task<PlankBulkPostResponse<T>> BulkAdd(IEnumerable<T> items);
 
-        Task<PlankDeleteResponse> DeleteAsync(int id);
+        Task<PlankDeleteResponse> Delete(int id);
 
-        Task<PlankPostResponse<T>> UpdateAsync(T item);
+        Task<PlankPostResponse<T>> Update(T item);
 
-        Task<PlankPostResponse<T>> UpdateAsync(T item, params Expression<Func<T, object>>[] properties);
+        Task<PlankPostResponse<T>> Update(T item, params Expression<Func<T, object>>[] properties);
     }
 }

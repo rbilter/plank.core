@@ -8,22 +8,22 @@ namespace Plank.Core.Data
     {
         public IRepository<TEntity> NextRepository { get; } = null!;
 
-        public Task AddAsync(TEntity _)
+        public Task Add(TEntity _)
         {
             return Task.CompletedTask;
         }
 
-        public Task BulkAddAsync(IEnumerable<TEntity> _)
+        public Task BulkAdd(IEnumerable<TEntity> _)
         {
             return Task.CompletedTask;
         }
 
-        public Task DeleteAsync(int _)
+        public Task Delete(int _)
         {
             return Task.CompletedTask;
         }
 
-        public Task<TEntity> GetAsync(int _)
+        public Task<TEntity> Get(int _)
         {
             return Task.FromResult<TEntity>(null!);
         }
@@ -33,12 +33,12 @@ namespace Plank.Core.Data
             return null!;
         }
 
-        public Task<IPagedList<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> _, List<Expression<Func<TEntity, object>>>? _1, int _2, int _3)
+        public Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> _, List<Expression<Func<TEntity, object>>>? _1, int _2, int _3)
         {
             return Task.FromResult<IPagedList<TEntity>>(null!);
         }
 
-        public Task UpdateAsync(TEntity _)
+        public Task Update(TEntity _)
         {
             return Task.CompletedTask;
         }

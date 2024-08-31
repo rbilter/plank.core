@@ -34,9 +34,9 @@ namespace Plank.Core.Tests.Data
             entity.ChildOne = [TestHelper.GetChildOne()];
 
             // Act
-            await _repo.AddAsync(entity);
+            await _repo.Add(entity);
             var includes = new List<Expression<Func<ParentEntity, object>>> { i => i.ChildOne };
-            var got = await _repo.SearchAsync(r => r.Id == entity.Id, includes);
+            var got = await _repo.Search(r => r.Id == entity.Id, includes);
 
             // Assert
             got.Single().Id.Should().Be(entity.Id);
@@ -54,9 +54,9 @@ namespace Plank.Core.Tests.Data
             };
 
             // Act
-            await _repo.BulkAddAsync(entities);
+            await _repo.BulkAdd(entities);
             var ids = entities.Select(e => e.Id).ToList();
-            var got = await _repo.SearchAsync(e => ids.Contains(e.Id));
+            var got = await _repo.Search(e => ids.Contains(e.Id));
 
             // Assert
             got.Should().HaveCount(2);
@@ -88,10 +88,10 @@ namespace Plank.Core.Tests.Data
             var expected = TestHelper.GetParentEntity();
 
             // Act
-            await _repo.AddAsync(expected);
+            await _repo.Add(expected);
 
-            await _repo.DeleteAsync(expected.Id);
-            var got = await _repo.GetAsync(expected.Id);
+            await _repo.Delete(expected.Id);
+            var got = await _repo.Get(expected.Id);
 
             // Assert
             got.Should().BeNull();
@@ -104,7 +104,7 @@ namespace Plank.Core.Tests.Data
             var id = TestHelper.GetParentId(_options);
 
             // Act
-            var got = await _repo.GetAsync(id);
+            var got = await _repo.Get(id);
 
             // Assert
             got.Id.Should().Be(id);
@@ -118,7 +118,7 @@ namespace Plank.Core.Tests.Data
             // Arrange
 
             // Act
-            var got = await _repo.SearchAsync(i => i.FirstName == "Han" && i.LastName == "Solo");
+            var got = await _repo.Search(i => i.FirstName == "Han" && i.LastName == "Solo");
 
             // Assert
             got.Single().ChildOne.Should().BeEmpty();
@@ -131,7 +131,7 @@ namespace Plank.Core.Tests.Data
             var includes = new List<Expression<Func<ParentEntity, object>>> { i => i.ChildOne };
 
             // Act
-            var got = await _repo.SearchAsync(i => i.FirstName == "Han" && i.LastName == "Solo", includes);
+            var got = await _repo.Search(i => i.FirstName == "Han" && i.LastName == "Solo", includes);
 
             // Assert
             got.Single().ChildOne.Should().ContainSingle();
@@ -144,15 +144,15 @@ namespace Plank.Core.Tests.Data
             var expected = TestHelper.GetParentEntity();
 
             // Act
-            await _repo.AddAsync(expected);
+            await _repo.Add(expected);
 
             var firstName = TestHelper.GetRandomString(10);
             var lastName = TestHelper.GetRandomString(20);
             expected.FirstName = firstName;
             expected.LastName = lastName;
 
-            await _repo.UpdateAsync(expected);
-            var got = await _repo.GetAsync(expected.Id);
+            await _repo.Update(expected);
+            var got = await _repo.Get(expected.Id);
 
             // Assert
             got.Id.Should().Be(expected.Id);

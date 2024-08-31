@@ -34,7 +34,7 @@ namespace Plank.Core.Tests.Controllers
             var item = TestHelper.GetParentEntity();
 
             // Act
-            var response = await _controller.AddAsync(item);
+            var response = await _controller.Add(item);
 
             // Assert
             response.ValidationResults.IsValid.Should().BeTrue();
@@ -53,7 +53,7 @@ namespace Plank.Core.Tests.Controllers
             };
 
             // Act
-            var response = await _controller.BulkAddAsync(items);
+            var response = await _controller.BulkAdd(items);
 
             // Assert
             response.Items.Should().HaveCount(2);
@@ -69,10 +69,10 @@ namespace Plank.Core.Tests.Controllers
             var entity = TestHelper.GetParentEntity();
 
             // Act
-            var created = await _controller.AddAsync(entity);
+            var created = await _controller.Add(entity);
             created.ValidationResults.IsValid.Should().BeTrue();
 
-            var deleted = await _controller.DeleteAsync(created.Item.Id);
+            var deleted = await _controller.Delete(created.Item.Id);
 
             // Assert
             deleted.ValidationResults.IsValid.Should().BeTrue();
@@ -94,7 +94,7 @@ namespace Plank.Core.Tests.Controllers
 
             Task SearchWithNullBuilder()
             {
-                return _controller.SearchAsync(null);
+                return _controller.Search(null);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Plank.Core.Tests.Controllers
             builder.Setup(p => p.PageSize).Returns(10);
 
             // Act
-            var response = await _controller.SearchAsync(builder.Object);
+            var response = await _controller.Search(builder.Object);
 
             // Assert
             response.Items.Should().NotBeEmpty();
@@ -132,14 +132,14 @@ namespace Plank.Core.Tests.Controllers
             var add       = TestHelper.GetParentEntity();
 
             // Act
-            var response = await _controller.AddAsync(add);
+            var response = await _controller.Add(add);
             response.ValidationResults.IsValid.Should().BeTrue();
 
             add.FirstName = firstName;
             add.LastName  = lastName;
-            response = await _controller.UpdateAsync(add);
+            response = await _controller.Update(add);
 
-            var updated = await _controller.GetAsync(add.Id);
+            var updated = await _controller.Get(add.Id);
 
             // Assert
             response.ValidationResults.IsValid.Should().BeTrue();

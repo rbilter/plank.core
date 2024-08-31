@@ -22,7 +22,7 @@ namespace Plank.Core.Data
             }
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<int> SaveChanges(CancellationToken cancellationToken = default(CancellationToken))
         {
             ChangeTracker.Entries()
                 .Where(a => (a.State == EntityState.Added || a.State == EntityState.Modified))
