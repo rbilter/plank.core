@@ -4,6 +4,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Plank.Core</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>BilterSoftware Developers</Authors>
+    <Company>BilterSoftware</Company>
+    <Product>Plank.Core</Product>
+    <Description>
+      Plank.Core is a foundational library that provides essential utilities and extensions for .NET applications. 
+      It includes support for object mapping, validation, logging, JSON serialization, and pagination, making it easier 
+      to build robust and maintainable applications.
+    </Description>
+    <RepositoryUrl>https://github.com/rbilter/plank.core</RepositoryUrl>
+    <PackageTags>Plank;Core</PackageTags>
+    <PackageReleaseNotes>Initial release of Plank.Core</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
