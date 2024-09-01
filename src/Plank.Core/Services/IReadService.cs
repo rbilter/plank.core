@@ -1,9 +1,10 @@
 using System.Linq.Expressions;
 using Plank.Core.Contracts;
+using Plank.Core.Models;
 
 namespace Plank.Core.Services
 {
-    public interface IReadService<T> where T : new()
+    public interface IReadService<T> where T : IEntity, new()
     {
         Task<PlankGetResponse<T>> Get(int id);
 

@@ -14,8 +14,6 @@ clean:
 
 pack:
 	dotnet pack ./src/Plank.Core/Plank.Core.csproj -c Release -o ./artifacts
-	dotnet pack ./src/Plank.Core.Contracts/Plank.Core.Contracts.csproj -c Release -o ./artifacts
 
 publish: pack
 	dotnet nuget push ./artifacts/Plank.Core.*.nupkg -k $(NUGET_API_KEY) -s https://api.nuget.org/v3/index.json --skip-duplicate
-	dotnet nuget push ./artifacts/Plank.Core.Contracts.*.nupkg -k $(NUGET_API_KEY) -s https://api.nuget.org/v3/index.json	--skip-duplicate

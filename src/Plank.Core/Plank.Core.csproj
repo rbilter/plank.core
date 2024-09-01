@@ -7,7 +7,7 @@
 
     <!-- NuGet Package Metadata -->
     <PackageId>Plank.Core</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>BilterSoftware Developers</Authors>
     <Company>BilterSoftware</Company>
     <Product>Plank.Core</Product>
@@ -31,9 +31,4 @@
     <PackageReference Include="Serialize.Linq" Version="3.0.152" />
     <PackageReference Include="X.PagedList" Version="9.1.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Plank.Core.Contracts\Plank.Core.Contracts.csproj" />
-  </ItemGroup>
-
 </Project>

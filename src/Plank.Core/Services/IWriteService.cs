@@ -1,9 +1,10 @@
 using System.Linq.Expressions;
 using Plank.Core.Contracts;
+using Plank.Core.Models;
 
 namespace Plank.Core.Services
 {
-    public interface IWriteService<T> where T : new()
+    public interface IWriteService<T> where T : IEntity, new()
     {
         Task<PlankPostResponse<T>> Add(T item);
 

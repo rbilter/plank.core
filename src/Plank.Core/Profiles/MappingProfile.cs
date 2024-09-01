@@ -7,7 +7,8 @@ using X.PagedList;
 
 namespace Plank.Core.Profiles
 {
-    internal class MappingProfile<TEntity> : Profile where TEntity : IEntity
+    internal class MappingProfile<TEntity> : Profile 
+        where TEntity : IEntity
     {
         public MappingProfile()
         {
