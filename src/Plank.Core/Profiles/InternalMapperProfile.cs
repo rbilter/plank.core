@@ -7,10 +7,10 @@ using X.PagedList;
 
 namespace Plank.Core.Mappers
 {
-    internal sealed class MappingProfile<TEntity> : Profile 
+    internal sealed class InternalMapperProfile<TEntity> : Profile 
         where TEntity : IEntity
     {
-        public MappingProfile()
+        public InternalMapperProfile()
         {
             CreateMap<ValidationResult, PlankValidationResult>();
 

@@ -4,11 +4,11 @@ using Plank.Core.Models;
 
 namespace Plank.Core.Mappers
 {
-    public class GenericMappingProfile<TEntity, TDto> : Profile
+    public class PlankMapperProfile<TEntity, TDto> : Profile
         where TEntity : IEntity, new()
         where TDto : IDto
     {
-        public GenericMappingProfile()
+        public PlankMapperProfile()
         {
 
             CreateMap<PlankGetResponse<TEntity>, ApiGetResponseDto<TDto>>();

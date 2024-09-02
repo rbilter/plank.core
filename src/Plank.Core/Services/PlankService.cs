@@ -113,7 +113,7 @@ namespace Plank.Core.Services
                 validation.AddResult(new ValidationResult(_defaultErrorMessage, this, "Error", null, null));
             }
 
-            var results = new PlankDeleteResponse(Mapping<TEntity>.Mapper.Map<PlankValidationResultCollection>(validation))
+            var results = new PlankDeleteResponse(InternalMapper<TEntity>.Mapper.Map<PlankValidationResultCollection>(validation))
             {
                 Id = id
             };
@@ -161,7 +161,7 @@ namespace Plank.Core.Services
             try
             {
                 var pagedList = await _repository.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
-                result = Mapping<TEntity>.Mapper.Map<PlankEnumerableResponse<TEntity>>(pagedList);
+                result = InternalMapper<TEntity>.Mapper.Map<PlankEnumerableResponse<TEntity>>(pagedList);
                 result.IsValid = true;
             }
             catch (DataException e)

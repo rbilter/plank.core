@@ -47,7 +47,7 @@ namespace Plank.Core.Models
             var validator = ValidationFactory.CreateValidator<TEntity>();
             var result = validator.Validate(item);
 
-            return Mapping<TEntity>.Mapper.Map<PlankValidationResultCollection>(result);
+            return InternalMapper<TEntity>.Mapper.Map<PlankValidationResultCollection>(result);
         }
 
         public static IEnumerable<(TEntity Item, PlankValidationResultCollection ValidationResults)> Validate<TEntity>(this IEnumerable<TEntity> items) where TEntity : IEntity

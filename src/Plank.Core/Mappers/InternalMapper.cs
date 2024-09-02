@@ -3,7 +3,7 @@ using Plank.Core.Models;
 
 namespace Plank.Core.Mappers
 {
-    internal static class Mapping<TEntity> where TEntity : IEntity
+    internal static class InternalMapper<TEntity> where TEntity : IEntity
     {
         public static IMapper Mapper => Lazy.Value;
 
@@ -12,7 +12,7 @@ namespace Plank.Core.Mappers
             var config = new MapperConfiguration(cfg => {
                 // This line ensures that internal properties are also mapped over.
                 cfg.ShouldMapProperty = p => (p.GetMethod?.IsPublic ?? false) || (p.GetMethod?.IsAssembly ?? false);
-                cfg.AddProfile<MappingProfile<TEntity>>();
+                cfg.AddProfile<InternalMapperProfile<TEntity>>();
             });
             var mapper = config.CreateMapper();
             return mapper;

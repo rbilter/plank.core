@@ -4,7 +4,7 @@ using Plank.Core.Models;
 
 namespace Plank.Core.Mappers
 {
-    public class GenericMapping<TEntity, TDto>
+    public sealed class PlankMapper<TEntity, TDto>
         where TEntity : IEntity, new()
         where TDto : IDto
     {
@@ -16,11 +16,11 @@ namespace Plank.Core.Mappers
             {
                 // This line ensures that internal properties are also mapped over.
                 cfg.ShouldMapProperty = p => (p.GetMethod?.IsPublic ?? false) || (p.GetMethod?.IsAssembly ?? false);
-                cfg.AddProfile<GenericMappingProfile<TEntity, TDto>>();
+                cfg.AddProfile<PlankMapperProfile<TEntity, TDto>>();
 
-                foreach (var action in PlankMappingConfiguration.ProfileActions)
+                foreach (var profile in PlankMapperConfiguration.Profiles)
                 {
-                    action(cfg);
+                    cfg.AddProfile(profile);
                 }                
             });
             var mapper = config.CreateMapper();
