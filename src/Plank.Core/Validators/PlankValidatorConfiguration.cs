@@ -2,7 +2,7 @@ using System.Reflection;
 
 namespace Plank.Core.Validators
 {
-    public static class PlankConfiguration
+    public static class PlankValidatorConfiguration
     {
         private static readonly List<Assembly> _registeredAssemblies = new List<Assembly>();
 

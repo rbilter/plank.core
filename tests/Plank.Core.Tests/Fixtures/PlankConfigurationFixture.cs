@@ -8,13 +8,13 @@ namespace Plank.Core.Tests.Fixtures
         public PlankConfigurationFixture()
         {
             // Register the assembly containing the validators
-            PlankConfiguration.RegisterAssembly(Assembly.GetExecutingAssembly());
+            PlankValidatorConfiguration.RegisterAssembly(Assembly.GetExecutingAssembly());
         }
 
         public void Dispose()
         {
             // Clear the registered assemblies
-            PlankConfiguration.ClearRegisteredAssemblies();
+            PlankValidatorConfiguration.ClearRegisteredAssemblies();
         }
     }
 }

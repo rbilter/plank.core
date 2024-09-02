@@ -5,9 +5,9 @@ using Plank.Core.Contracts;
 using Plank.Core.Models;
 using X.PagedList;
 
-namespace Plank.Core.Profiles
+namespace Plank.Core.Mappers
 {
-    internal class MappingProfile<TEntity> : Profile 
+    internal sealed class MappingProfile<TEntity> : Profile 
         where TEntity : IEntity
     {
         public MappingProfile()

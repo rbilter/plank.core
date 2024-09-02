@@ -6,7 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Plank.Core.Contracts;
 using Plank.Core.Data;
 using Plank.Core.Models;
-using Plank.Core.Profiles;
+using Plank.Core.Mappers;
 using Serialize.Linq.Serializers;
 
 namespace Plank.Core.Services

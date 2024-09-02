@@ -1,7 +1,7 @@
 using AutoMapper;
 using Plank.Core.Models;
 
-namespace Plank.Core.Profiles
+namespace Plank.Core.Mappers
 {
     internal static class Mapping<TEntity> where TEntity : IEntity
     {

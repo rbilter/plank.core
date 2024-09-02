@@ -2,7 +2,7 @@ using AutoMapper;
 using Plank.Core.Contracts;
 using Plank.Core.Models;
 
-namespace Plank.Core.Profiles
+namespace Plank.Core.Mappers
 {
     public class GenericMappingProfile<TEntity, TDto> : Profile
         where TEntity : IEntity, new()

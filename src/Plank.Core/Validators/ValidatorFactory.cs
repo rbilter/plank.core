@@ -34,7 +34,7 @@ namespace Plank.Core.Validators
 
         private static void LoadValidators()
         {
-            var allTypes = PlankConfiguration
+            var allTypes = PlankValidatorConfiguration
                 .GetRegisteredAssemblies()
                 .SelectMany(a => a.GetExportedTypes())
                 .Where(t => t.IsClass && !t.IsAbstract);

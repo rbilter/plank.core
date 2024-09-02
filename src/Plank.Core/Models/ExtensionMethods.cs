@@ -4,7 +4,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Newtonsoft.Json;
 using Plank.Core.Contracts;
-using Plank.Core.Profiles;
+using Plank.Core.Mappers;
 
 namespace Plank.Core.Models
 {
