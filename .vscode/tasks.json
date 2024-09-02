@@ -2,38 +2,74 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build Plank.Core.Tests",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Plank.Core.Tests/Plank.Core.Tests.csproj",
+                "${workspaceFolder}/tests/Plank.Core.Tests/Plank.Core.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "build Todo.Api",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/tests/Todo.Api/Todo.Api.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish Plank.Core.Tests",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/Plank.Core.Tests/Plank.Core.Tests.csproj",
+                "${workspaceFolder}/tests/Plank.Core.Tests/Plank.Core.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "watch",
+            "label": "publish Todo.Api",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/tests/Todo.Api/Todo.Api.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch Plank.Core.Tests",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/Plank.Core.Tests/Plank.Core.Tests.csproj"
+                "${workspaceFolder}/tests/Plank.Core.Tests/Plank.Core.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch Todo.Api",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/tests/Todo.Api/Todo.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

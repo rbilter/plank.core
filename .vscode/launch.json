@@ -5,22 +5,56 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": ".NET Core Launch (Plank.Core.Tests)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build Plank.Core.Tests",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Plank.Core.Tests/bin/Debug/net8.0/Plank.Core.Tests.dll",
+            "program": "${workspaceFolder}/tests/Plank.Core.Tests/bin/Debug/net8.0/Plank.Core.Tests.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/Plank.Core.Tests",
+            "cwd": "${workspaceFolder}/tests/Plank.Core.Tests",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
         },     
         {
+            "name": ".NET Core Launch (Todo.Api)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build Todo.Api",
+            "program": "${workspaceFolder}/tests/Todo.Api/bin/Debug/net8.0/Todo.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/tests/Todo.Api",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "http://localhost:5084/swagger",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start http://localhost:5084/swagger"
+                },
+                "osx": {
+                    "command": "open",
+                    "args": "http://localhost:5084/swagger"
+                },
+                "linux": {
+                    "command": "xdg-open",
+                    "args": "http://localhost:5084/swagger"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/tests/Todo.Api/Views"
+            }
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
-        }
+        },        
     ]
 }

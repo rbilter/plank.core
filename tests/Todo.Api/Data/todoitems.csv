@@ -1,0 +1,4 @@
+Id,GlobalId,DateCreated,DateLastModified,IsCompleted,Title
+1,3f50c5b2-8c4d-4b2e-9b1e-2d8e8f8f8f8f,2023-01-01T10:00:00,2023-01-01T10:00:00,false,Clone the repository
+2,4a60d6c3-9d5e-5c3f-0c2f-3e9f9f9f9f9f,2023-02-01T11:00:00,2023-02-01T11:00:00,false,Build the project
+3,5b70e7d4-0e6f-6d4f-1d3f-4f0f0f0f0f0f,2023-03-01T12:00:00,2023-03-01T12:00:00,false,Run the tests
