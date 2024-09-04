@@ -1,5 +1,5 @@
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Todo.Api.Data.Models
 {
