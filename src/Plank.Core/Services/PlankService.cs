@@ -150,17 +150,17 @@ namespace Plank.Core.Services
             return result;
         }
 
-        public async Task<PlankEnumerableResponse<TEntity>> Search(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>> includes, int pageNumber, int pageSize)
+        public async Task<PlankEnumerableResponse<TEntity>> Search(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>> includes, int pageNumber, int pageSize)
         {
-            expression ??= (f => true);
+            filter ??= (f => true);
 
             var serializer = new ExpressionSerializer(new JsonSerializer());
-            _logger.InfoMessage(serializer.SerializeText(expression));
+            _logger.InfoMessage(serializer.SerializeText(filter));
 
             PlankEnumerableResponse<TEntity> result = null;
             try
             {
-                var pagedList = await _repository.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+                var pagedList = await _repository.Search(filter, includes, pageNumber, pageSize).ConfigureAwait(false);
                 result = InternalMapper<TEntity>.Mapper.Map<PlankEnumerableResponse<TEntity>>(pagedList);
                 result.IsValid = true;
             }

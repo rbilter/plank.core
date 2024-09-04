@@ -8,6 +8,6 @@ namespace Plank.Core.Services
     {
         Task<PlankGetResponse<T>> Get(int id);
 
-        Task<PlankEnumerableResponse<T>> Search(Expression<Func<T, bool>> expression, List<Expression<Func<T, object>>> includes, int pageNumber, int pageSize);
+        Task<PlankEnumerableResponse<T>> Search(Expression<Func<T, bool>> filter, List<Expression<Func<T, object>>> includes, int pageNumber, int pageSize);
     }
 }

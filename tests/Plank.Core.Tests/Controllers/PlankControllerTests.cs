@@ -102,9 +102,12 @@ namespace Plank.Core.Tests.Controllers
         public async Task Search_EntitiesExist_PageReturned()
         {
             // Arrange
-            var builder = new Mock<ISearchBuilder<ParentEntity>>();
-            builder.Setup(p => p.PageNumber).Returns(1);
-            builder.Setup(p => p.PageSize).Returns(10);
+            var builder = new Mock<ISearchCriteriaBuilder<ParentEntity>>();
+            builder.Setup(m => m.Build()).Returns(new SearchCriteria<ParentEntity>
+            {
+                PageNumber = 1,
+                PageSize = 10
+            });
 
             // Act
             var response = await _controller.Search(builder.Object);

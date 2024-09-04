@@ -39,16 +39,17 @@ namespace Plank.Core.Controllers
             return await _service.Get(id).ConfigureAwait(false);
         }
 
-        public async Task<PlankEnumerableResponse<TEntity>> Search(ISearchBuilder<TEntity> builder)
+        public async Task<PlankEnumerableResponse<TEntity>> Search(ISearchCriteriaBuilder<TEntity> builder)
         {
             _ = builder ?? throw new ArgumentNullException(nameof(builder));
 
-            var expression = builder.Build();
-            var includes = builder.Includes ?? [];
-            var pageNumber = builder.PageNumber;
-            var pageSize = builder.PageSize;
+            var criteria = builder.Build();
+            var filter = criteria.Filter;
+            var includes = criteria.Includes;
+            var pageNumber = criteria.PageNumber;
+            var pageSize = criteria.PageSize;
 
-            return await _service.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+            return await _service.Search(filter, includes, pageNumber, pageSize).ConfigureAwait(false);
         }
 
         public async Task<PlankPostResponse<TEntity>> Update(TEntity entity)

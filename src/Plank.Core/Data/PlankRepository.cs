@@ -59,9 +59,9 @@ namespace Plank.Core.Data
             return NextRepository;
         }
 
-        public async Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> expression, List<Expression<Func<TEntity, object>>>? includes = null, int pageNumber = 1, int pageSize = 10)
+        public async Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>>? includes = null, int pageNumber = 1, int pageSize = 10)
         {
-            var query = _context.Set<TEntity>().AsNoTracking().Where(expression);
+            var query = _context.Set<TEntity>().AsNoTracking().Where(filter);
 
             if (includes != null)
             {
@@ -77,7 +77,7 @@ namespace Plank.Core.Data
                 return result;
             }
 
-            return await NextRepository.Search(expression, includes, pageNumber, pageSize).ConfigureAwait(false);
+            return await NextRepository.Search(filter, includes, pageNumber, pageSize).ConfigureAwait(false);
         }
 
         public async Task Update(TEntity entity)

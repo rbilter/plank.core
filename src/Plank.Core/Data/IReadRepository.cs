@@ -7,6 +7,6 @@ namespace Plank.Core.Data
     {
         Task<T> Get(int id);
 
-        Task<IPagedList<T>> Search(Expression<Func<T, bool>> expression, List<Expression<Func<T, object>>>? includes, int pageNumber, int pageSize);
+        Task<IPagedList<T>> Search(Expression<Func<T, bool>> filter, List<Expression<Func<T, object>>>? includes, int pageNumber, int pageSize);
     }
 }
