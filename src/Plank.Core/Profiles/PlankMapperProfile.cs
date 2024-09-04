@@ -1,6 +1,6 @@
 using AutoMapper;
 using Plank.Core.Contracts;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Mappers
 {

@@ -1,7 +1,7 @@
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     [HasSelfValidation]
     public abstract class PlankEntityAdapter : IEntity, IPopulateComputedColumns
@@ -23,7 +23,7 @@ namespace Plank.Core.Models
         public void Validate(ValidationResults results)
         {
             _ = results ?? throw new ArgumentNullException(nameof(results));
-            
+
             EntityHelper.Validate(this, results);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Tests.Helpers.Entities
 {

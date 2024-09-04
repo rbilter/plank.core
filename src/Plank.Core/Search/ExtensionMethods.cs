@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Search
 {

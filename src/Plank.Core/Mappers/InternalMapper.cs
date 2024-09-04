@@ -1,5 +1,5 @@
 using AutoMapper;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Mappers
 {

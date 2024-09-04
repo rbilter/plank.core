@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using FluentValidation;
 using log4net;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Validators
 {

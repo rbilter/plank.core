@@ -1,5 +1,5 @@
 using Microsoft.Practices.EnterpriseLibrary.Validation;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Validators
 {

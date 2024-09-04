@@ -2,7 +2,7 @@ using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     internal static class EntityHelper
     {
@@ -38,7 +38,7 @@ namespace Plank.Core.Models
                         var result = validator.Validate(entity);
                         results.AddAllResults(result);
 
-                        if(result.IsValid)
+                        if (result.IsValid)
                         {
                             ValidateWithCustomValidators(results, entity);
                         }
@@ -51,7 +51,7 @@ namespace Plank.Core.Models
                     var result = validator.Validate(property);
                     results.AddAllResults(result);
 
-                    if(result.IsValid)
+                    if (result.IsValid)
                     {
                         ValidateWithCustomValidators(results, property);
                     }
@@ -67,7 +67,7 @@ namespace Plank.Core.Models
                 var result = v.Validate(entity);
                 results.AddAllResults(result);
 
-                if(!result.IsValid)
+                if (!result.IsValid)
                 {
                     break;
                 }

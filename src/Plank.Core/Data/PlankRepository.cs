@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 using X.PagedList;
 
 namespace Plank.Core.Data

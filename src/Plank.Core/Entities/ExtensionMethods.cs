@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Plank.Core.Contracts;
 using Plank.Core.Mappers;
 
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     internal static class ExtensionMethods
     {
@@ -28,9 +28,9 @@ namespace Plank.Core.Models
         {
             var settings = new JsonSerializerSettings
             {
-                Formatting            = Formatting.Indented,
+                Formatting = Formatting.Indented,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                TypeNameHandling      = handling
+                TypeNameHandling = handling
             };
 
             return JsonConvert.SerializeObject(item, settings);
@@ -38,7 +38,7 @@ namespace Plank.Core.Models
 
         public static T ToObject<T>(this Dictionary<string, object> dictionary)
         {
-            var json = ToJson(dictionary);
+            var json = dictionary.ToJson();
             return JsonConvert.DeserializeObject<T>(json);
         }
 

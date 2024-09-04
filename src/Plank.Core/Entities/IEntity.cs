@@ -1,6 +1,6 @@
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     public interface IEntity
     {

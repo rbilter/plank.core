@@ -1,4 +1,4 @@
-﻿using Plank.Core.Models;
+﻿using Plank.Core.Entities;
 using System.Linq.Expressions;
 using X.PagedList;
 

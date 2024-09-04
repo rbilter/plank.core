@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     [HasSelfValidation]
     public abstract class PlankEntity : IEntity, IPopulateComputedColumns

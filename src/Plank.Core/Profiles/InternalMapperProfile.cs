@@ -2,7 +2,7 @@
 using AutoMapper;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Plank.Core.Contracts;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 using X.PagedList;
 
 namespace Plank.Core.Mappers

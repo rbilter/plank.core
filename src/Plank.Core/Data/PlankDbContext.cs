@@ -1,6 +1,6 @@
-﻿using Plank.Core.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Data
 {

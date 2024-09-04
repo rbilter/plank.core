@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using Plank.Core.Contracts;
 using Plank.Core.Data;
-using Plank.Core.Models;
+using Plank.Core.Entities;
 using Plank.Core.Search;
 using Plank.Core.Services;
 

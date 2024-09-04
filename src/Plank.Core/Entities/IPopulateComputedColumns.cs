@@ -1,4 +1,4 @@
-namespace Plank.Core.Models
+namespace Plank.Core.Entities
 {
     internal interface IPopulateComputedColumns
     {

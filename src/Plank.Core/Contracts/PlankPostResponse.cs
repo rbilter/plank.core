@@ -1,4 +1,4 @@
-﻿using Plank.Core.Models;
+﻿using Plank.Core.Entities;
 
 namespace Plank.Core.Contracts
 {

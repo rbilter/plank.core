@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Plank.Core.Tests.Helpers.Entities;
 
-namespace Plank.Core.Tests.Models
+namespace Plank.Core.Tests.Entities
 {
     public class PlankEntityTests
     {
@@ -13,7 +13,7 @@ namespace Plank.Core.Tests.Models
             // Act
             Action act = () =>
             {
-                var entity = new PlankHelperEntity();   
+                var entity = new PlankHelperEntity();
                 entity.Validate(null);
             };
 
