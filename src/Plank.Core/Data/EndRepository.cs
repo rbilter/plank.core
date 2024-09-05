@@ -25,17 +25,17 @@ namespace Plank.Core.Data
 
         public Task<TEntity> Get(int _)
         {
-            return Task.FromResult<TEntity>(null!);
+            return Task.FromResult<TEntity>(null);
         }
 
         public IRepository<TEntity> RegisterNext(IRepository<TEntity> _)
         {
-            return null!;
+            return null;
         }
 
         public Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> _, List<Expression<Func<TEntity, object>>>? _1, int _2, int _3)
         {
-            return Task.FromResult<IPagedList<TEntity>>(null!);
+            return Task.FromResult<IPagedList<TEntity>>(null);
         }
 
         public Task Update(TEntity _)
