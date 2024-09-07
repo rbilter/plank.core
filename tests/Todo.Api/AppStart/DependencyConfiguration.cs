@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Todo.Api.Crud;
 using Todo.Api.Data;
+using Todo.Api.Search;
 
 namespace Todo.Api.AppStart
 {
@@ -9,11 +10,12 @@ namespace Todo.Api.AppStart
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<TodoCrud>();
+            services.AddScoped<TodoSearch>();
 
             // Register the full CSV file path as a singleton
             services.AddSingleton(provider =>
             {
-                var csvFilePath = configuration.GetValue<string>("CsvFilePath");
+                var csvFilePath = configuration.GetValue<string>("CsvFilePath") ?? string.Empty;
                 var basePath = Directory.GetCurrentDirectory();
                 return Path.Combine(basePath, csvFilePath);
             });

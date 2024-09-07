@@ -5,9 +5,6 @@ all: clean build test
 build:
 	dotnet build
 
-test:
-	dotnet test ./tests/Plank.Core.Tests/Plank.Core.Tests.csproj
-
 clean:
 	dotnet clean
 
@@ -16,3 +13,6 @@ pack:
 
 publish: pack
 	dotnet nuget push ./artifacts/Plank.Core.*.nupkg -k $(NUGET_API_KEY) -s https://api.nuget.org/v3/index.json --skip-duplicate
+
+test:
+	dotnet test ./tests/Plank.Core.Tests/Plank.Core.Tests.csproj
