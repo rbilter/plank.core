@@ -8,12 +8,12 @@ namespace Plank.Core.Tests.Search
     public class SearchCriteriaBuilderTests
     {
         [Fact]
-        public void Include_ShouldAddIncludeExpression()
+        public void AddInclude_ShouldAddIncludeExpression()
         {
             // Arrange
             Expression<Func<ParentEntity, object>> includeExpression = e => e.ChildOne;
             var builder = new SearchCriteriaBuilder<ParentEntity>()
-                .Include(includeExpression);
+                .AddInclude(includeExpression);
 
             // Act
             var criteria = builder.Build();
@@ -23,53 +23,31 @@ namespace Plank.Core.Tests.Search
         }
 
         [Fact]
-        public void SetFilter_ShouldSetFilterWithAndCombination()
+        public void AddFilterAnd_ShouldAddAndFilterExpression()
         {
             // Arrange
-            Expression<Func<ParentEntity, bool>> filter = e => e.FirstName == "FirstName";
             var builder = new SearchCriteriaBuilder<ParentEntity>()
-                .SetFilter(filter, FilterCombination.And);
+                .AddFilterAnd(e => e.FirstName.Contains("FirstName"));
 
             // Act
             var criteria = builder.Build();
 
             // Assert
-            criteria.Filter.ToString().Should().Contain("And");
-            criteria.Filter.ToString().Should().Contain("FirstName == \"FirstName\"");
-            criteria.Filter.ToString().Should().Contain("True"); // Default value
+            criteria.Filter.ToString().Should().Contain("e => (True And e.FirstName.Contains(\"FirstName\"))");
         }
 
         [Fact]
-        public void SetFilter_ShouldSetFilterWithOrCombination()
+        public void AddFilterOr_ShouldAddOrFilterExpression()
         {
             // Arrange
-            Expression<Func<ParentEntity, bool>> filter = e => e.FirstName == "FirstName";
             var builder = new SearchCriteriaBuilder<ParentEntity>()
-                .SetFilter(filter, FilterCombination.Or);
+                .AddFilterOr(e => e.FirstName.Contains("FirstName"));
 
             // Act
             var criteria = builder.Build();
 
             // Assert
-            criteria.Filter.ToString().Should().Contain("Or");
-            criteria.Filter.ToString().Should().Contain("FirstName == \"FirstName\"");
-            criteria.Filter.ToString().Should().Contain("True"); // Default value
-        }
-
-        [Fact]
-        public void SetFilter_ShouldThrowArgumentOutOfRangeExceptionForInvalidCombination()
-        {
-            // Arrange
-            Expression<Func<ParentEntity, bool>> filter = e => e.FirstName == "FirstName";
-            var invalidCombination = (FilterCombination)999;
-            var builder = new SearchCriteriaBuilder<ParentEntity>();
-
-            // Act
-            Action act = () => builder.SetFilter(filter, invalidCombination);
-
-            // Assert
-            act.Should().Throw<ArgumentOutOfRangeException>()
-                .WithMessage("*combination*"); // Ensure the exception message contains the expected text
+            criteria.Filter.ToString().Should().Contain("e => (True Or e.FirstName.Contains(\"FirstName\"))");
         }
 
         [Fact]

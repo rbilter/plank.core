@@ -1,3 +1,4 @@
+using System;
 using System.Linq.Expressions;
 using Plank.Core.Entities;
 
@@ -12,20 +13,21 @@ namespace Plank.Core.Search
             return _criteria;
         }
 
-        public ISearchCriteriaBuilder<TEntity> Include(Expression<Func<TEntity, object>> includeExpression)
+        public ISearchCriteriaBuilder<TEntity> AddInclude(Expression<Func<TEntity, object>> includeExpression)
         {
             _criteria.Includes.Add(includeExpression);
             return this;
         }
 
-        public ISearchCriteriaBuilder<TEntity> SetFilter(Expression<Func<TEntity, bool>> filter, FilterCombination combination)
+        public ISearchCriteriaBuilder<TEntity> AddFilterAnd(Expression<Func<TEntity, bool>> filter)
         {
-            _criteria.Filter = combination switch
-            {
-                FilterCombination.And => _criteria.Filter.And(filter),
-                FilterCombination.Or => _criteria.Filter.Or(filter),
-                _ => throw new ArgumentOutOfRangeException(nameof(combination), combination, null)
-            };
+            _criteria.Filter = _criteria.Filter.And(filter);
+            return this;
+        }
+
+        public ISearchCriteriaBuilder<TEntity> AddFilterOr(Expression<Func<TEntity, bool>> filter)
+        {
+            _criteria.Filter = _criteria.Filter.Or(filter);
             return this;
         }
 
