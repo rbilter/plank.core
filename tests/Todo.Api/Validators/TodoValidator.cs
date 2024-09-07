@@ -1,26 +1,15 @@
-using Microsoft.Practices.EnterpriseLibrary.Validation;
-using Plank.Core.Validators;
+using FluentValidation;
 using Todo.Api.Data.Models;
 
 namespace Todo.Api.Validators
 {
-    public class TodoValidator : PlankValidator<TodoModel>
+    public class TodoValidator : AbstractValidator<TodoModel>
     {
-        public override ValidationResults Validate(TodoModel model)
+        public TodoValidator()
         {
-            var result = new ValidationResults();
-
-            if (string.IsNullOrWhiteSpace(model.Title))
-            {
-                result.AddResult(new ValidationResult("Title is required.", null, nameof(model.Title), "Required", null));
-            }
-
-            if (model.Title.Length > 25)
-            {
-                result.AddResult(new ValidationResult("Title must be less than 25 characters.", null, nameof(model.Title), "MaxLength", null));
-            }
-
-            return result;
+            RuleFor(todo => todo.Title)
+                .NotEmpty().WithMessage("Title is required.")
+                .Length(1, 25).WithMessage("Title must be between 1 and 25 characters.");
         }
     }
 }

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Plank.Core.Contracts;
-using Todo.Api.Crud;
-using Todo.Api.Dtos;
-using Todo.Api.Search;
+using Todo.Api.Crud.Todo;
+using Todo.Api.Dtos.Todo;
+using Todo.Api.Search.Todo;
 
 namespace Todo.Api.Controllers
 {
@@ -49,7 +49,7 @@ namespace Todo.Api.Controllers
 
         [HttpPost("search")]
         [ProducesResponseType(typeof(ApiEnumerableResponseDto<TodoDto>), 200)]
-        public async Task<IActionResult> Search([FromBody] TodoSearchRequestDto item)
+        public async Task<IActionResult> Search([FromBody] TodoSearchDto item)
         {
             return Ok(await _todoSearch.Search(item));
         }

@@ -4,9 +4,9 @@ using Plank.Core.Controllers;
 using Plank.Core.Mappers;
 using Todo.Api.Data;
 using Todo.Api.Data.Models;
-using Todo.Api.Dtos;
+using Todo.Api.Dtos.Todo;
 
-namespace Todo.Api.Crud
+namespace Todo.Api.Crud.Todo
 {
     public class TodoCrud
     {

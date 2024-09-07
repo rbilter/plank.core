@@ -1,6 +1,6 @@
 using Plank.Core.Contracts;
 
-namespace Todo.Api.Dtos
+namespace Todo.Api.Dtos.Todo
 {
     public class TodoDto : AbstractDto
     {

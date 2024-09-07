@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Todo.Api.Crud;
+using Todo.Api.Crud.Todo;
 using Todo.Api.Data;
-using Todo.Api.Search;
+using Todo.Api.Search.Todo;
 
 namespace Todo.Api.AppStart
 {

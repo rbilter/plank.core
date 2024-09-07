@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Plank.Core.Contracts;
 using Plank.Core.Controllers;
@@ -6,9 +5,9 @@ using Plank.Core.Mappers;
 using Plank.Core.Search;
 using Todo.Api.Data;
 using Todo.Api.Data.Models;
-using Todo.Api.Dtos;
+using Todo.Api.Dtos.Todo;
 
-namespace Todo.Api.Search
+namespace Todo.Api.Search.Todo
 {
     public class TodoSearch
     {
@@ -19,7 +18,7 @@ namespace Todo.Api.Search
             _plankController = new PlankController<TodoModel>(new TodoContext(options, csvFilePath));
         }
 
-        public async Task<ApiEnumerableResponseDto<TodoDto>> Search(TodoSearchRequestDto item)
+        public async Task<ApiEnumerableResponseDto<TodoDto>> Search(TodoSearchDto item)
         {
             var builder = new SearchCriteriaBuilder<TodoModel>()
                 .SetPageNumber(item.PageNumber)

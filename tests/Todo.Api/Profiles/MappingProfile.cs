@@ -1,6 +1,6 @@
 using AutoMapper;
 using Todo.Api.Data.Models;
-using Todo.Api.Dtos;
+using Todo.Api.Dtos.Todo;
 
 namespace Todo.Api.Profiles
 {
