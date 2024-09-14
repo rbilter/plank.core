@@ -6,9 +6,11 @@ using Plank.Core.Entities;
 
 namespace Plank.Core.Mappers
 {
-    public static class PlankMapper
+    public static class PlankMapper<TEntity, TDto>
+            where TEntity : IEntity, new()
+            where TDto : IDto
     {
-        private static readonly ILog _logger = LogManager.GetLogger(nameof(PlankMapper));
+        private static readonly ILog _logger = LogManager.GetLogger(nameof(PlankMapper<TEntity, TDto>));
         private static readonly List<Profile> _profiles = [];
 
         static PlankMapper()
@@ -17,9 +19,9 @@ namespace Plank.Core.Mappers
             profileRegistrar.RegisterProfiles(PlankAssemblyRegistrar.GetRegisteredAssemblies());
         }
 
-        public static IMapper Mapper<TEntity, TDto>()
-            where TEntity : IEntity, new()
-            where TDto : IDto
+        public static IMapper Mapper => Lazy.Value;
+
+        private static readonly Lazy<IMapper> Lazy = new(() =>
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -34,6 +36,6 @@ namespace Plank.Core.Mappers
             });
 
             return config.CreateMapper();
-        }
+        });
     }
 }
