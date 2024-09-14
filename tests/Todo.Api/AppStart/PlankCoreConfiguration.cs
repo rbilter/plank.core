@@ -1,6 +1,4 @@
-using Plank.Core.Mappers;
-using Plank.Core.Validators;
-using Todo.Api.Profiles;
+using Plank.Core.Configuration;
 
 namespace Todo.Api.AppStart
 {
@@ -8,8 +6,7 @@ namespace Todo.Api.AppStart
     {
         public static void Configure()
         {
-            PlankValidatorConfiguration.RegisterAssemblyByPartialName("Todo.Api");
-            PlankMapperConfiguration.RegisterProfile<MappingProfile>();
+            PlankAssemblyRegistrar.RegisterAssemblyByPartialName("Todo.Api");
         }
     }
 }
