@@ -17,7 +17,7 @@ namespace Plank.Core.Mappers
             profileRegistrar.RegisterProfiles(PlankAssemblyRegistrar.GetRegisteredAssemblies());
         }
 
-        public static IMapper CreateMapper<TEntity, TDto>()
+        public static IMapper Mapper<TEntity, TDto>()
             where TEntity : IEntity, new()
             where TDto : IDto
         {
