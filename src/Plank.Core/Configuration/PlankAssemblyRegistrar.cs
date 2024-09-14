@@ -1,8 +1,8 @@
 using System.Reflection;
 
-namespace Plank.Core.Validators
+namespace Plank.Core.Configuration
 {
-    public static class PlankValidatorConfiguration
+    public static class PlankAssemblyRegistrar
     {
         private static readonly List<Assembly> _registeredAssemblies = new List<Assembly>();
 
@@ -34,6 +34,6 @@ namespace Plank.Core.Validators
             {
                 RegisterAssembly(assembly);
             }
-        }        
+        }
     }
 }

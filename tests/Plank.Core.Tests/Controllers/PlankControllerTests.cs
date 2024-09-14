@@ -12,7 +12,7 @@ namespace Plank.Core.Tests.Controllers
     public class PlankControllerTests
     {
         private static readonly DbContextOptions<TestDbContext> _options = TestHelper.InitializeContextOptions();
-        private readonly Configuration _configuration;
+        private readonly TestDbSeeder _configuration;
         private readonly PlankController<ParentEntity> _controller;
 
         public PlankControllerTests()
@@ -21,7 +21,7 @@ namespace Plank.Core.Tests.Controllers
             context.Database.OpenConnection();
             context.Database.EnsureCreated();
 
-            _configuration = new Configuration();
+            _configuration = new TestDbSeeder();
             _configuration.Seed(context);
 
             _controller = new PlankController<ParentEntity>(context);

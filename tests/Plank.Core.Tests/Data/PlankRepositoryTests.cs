@@ -11,7 +11,7 @@ namespace Plank.Core.Tests.Data
     public class PlankRepositoryTests
     {
         private static readonly DbContextOptions<TestDbContext> _options = TestHelper.InitializeContextOptions();
-        private readonly Configuration _configuration;
+        private readonly TestDbSeeder _configuration;
         private readonly PlankRepository<ParentEntity> _repo;
 
         public PlankRepositoryTests()
@@ -20,7 +20,7 @@ namespace Plank.Core.Tests.Data
             context.Database.OpenConnection();
             context.Database.EnsureCreated();
 
-            _configuration = new Configuration();
+            _configuration = new TestDbSeeder();
             _configuration.Seed(context);
 
             _repo = new PlankRepository<ParentEntity>(context);

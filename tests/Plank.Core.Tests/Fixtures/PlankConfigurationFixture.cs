@@ -1,5 +1,5 @@
 using System.Reflection;
-using Plank.Core.Validators;
+using Plank.Core.Configuration;
 
 namespace Plank.Core.Tests.Fixtures
 {
@@ -8,13 +8,13 @@ namespace Plank.Core.Tests.Fixtures
         public PlankConfigurationFixture()
         {
             // Register the assembly containing the validators
-            PlankValidatorConfiguration.RegisterAssembly(Assembly.GetExecutingAssembly());
+            PlankAssemblyRegistrar.RegisterAssembly(Assembly.GetExecutingAssembly());
         }
 
         public void Dispose()
         {
             // Clear the registered assemblies
-            PlankValidatorConfiguration.ClearRegisteredAssemblies();
+            PlankAssemblyRegistrar.ClearRegisteredAssemblies();
         }
     }
 }

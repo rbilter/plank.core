@@ -2,7 +2,7 @@ using Plank.Core.Tests.Helpers.Entities;
 
 namespace Plank.Core.Tests.Helpers.Data
 {
-    public sealed class Configuration
+    public sealed class TestDbSeeder
     {
         public void Seed(TestDbContext context)
         {

@@ -1,23 +1,23 @@
 using System.Reflection;
 using FluentAssertions;
+using Plank.Core.Configuration;
 using Plank.Core.Tests.Fixtures;
-using Plank.Core.Validators;
 
-namespace Plank.Core.Tests.Validators
+namespace Plank.Core.Tests.Configuration
 {
     [Collection(nameof(PlankConfigurationFixture))]
-    public sealed class PlankConfigurationTests 
+    public sealed class PlankAssemblyRegistrarTests
     {
-        public PlankConfigurationTests()
+        public PlankAssemblyRegistrarTests()
         {
-            PlankValidatorConfiguration.ClearRegisteredAssemblies();
+            PlankAssemblyRegistrar.ClearRegisteredAssemblies();
         }
 
         [Fact]
         public void GetRegisteredAssemblies_NoAssembliesAreRegistered_EmptyExpected()
         {
             // Act
-            var registeredAssemblies = PlankValidatorConfiguration.GetRegisteredAssemblies();
+            var registeredAssemblies = PlankAssemblyRegistrar.GetRegisteredAssemblies();
 
             // Assert
             Assert.Empty(registeredAssemblies);
@@ -28,11 +28,11 @@ namespace Plank.Core.Tests.Validators
         {
             // Arrange
             var assembly = Assembly.GetExecutingAssembly();
-            PlankValidatorConfiguration.RegisterAssembly(assembly);
+            PlankAssemblyRegistrar.RegisterAssembly(assembly);
 
             // Act
-            PlankValidatorConfiguration.RegisterAssembly(assembly);
-            var registeredAssemblies = PlankValidatorConfiguration.GetRegisteredAssemblies();
+            PlankAssemblyRegistrar.RegisterAssembly(assembly);
+            var registeredAssemblies = PlankAssemblyRegistrar.GetRegisteredAssemblies();
 
             // Assert
             registeredAssemblies.Where(a => a == assembly).Should().ContainSingle();
@@ -43,10 +43,10 @@ namespace Plank.Core.Tests.Validators
         {
             // Arrange
             var assembly = Assembly.GetExecutingAssembly();
-            PlankValidatorConfiguration.RegisterAssembly(assembly);
+            PlankAssemblyRegistrar.RegisterAssembly(assembly);
 
             // Act
-            var registeredAssemblies = PlankValidatorConfiguration.GetRegisteredAssemblies();
+            var registeredAssemblies = PlankAssemblyRegistrar.GetRegisteredAssemblies();
 
             // Assert
             registeredAssemblies.Should().Contain(assembly);
@@ -59,12 +59,12 @@ namespace Plank.Core.Tests.Validators
             var partialName = "Non.Existent.Assembly";
 
             // Act
-            PlankValidatorConfiguration.RegisterAssemblyByPartialName(partialName);
-            var registeredAssemblies = PlankValidatorConfiguration.GetRegisteredAssemblies();
+            PlankAssemblyRegistrar.RegisterAssemblyByPartialName(partialName);
+            var registeredAssemblies = PlankAssemblyRegistrar.GetRegisteredAssemblies();
 
             // Assert
             registeredAssemblies.Should().BeEmpty();
-        }  
+        }
 
         [Fact]
         public void RegisterAssemblyByPartialName_ValidPartialName_AssembliesRegisteredExpected()
@@ -73,12 +73,12 @@ namespace Plank.Core.Tests.Validators
             var partialName = "Plank.Core.Tests";
 
             // Act
-            PlankValidatorConfiguration.RegisterAssemblyByPartialName(partialName);
-            var registeredAssemblies = PlankValidatorConfiguration.GetRegisteredAssemblies();
+            PlankAssemblyRegistrar.RegisterAssemblyByPartialName(partialName);
+            var registeredAssemblies = PlankAssemblyRegistrar.GetRegisteredAssemblies();
 
             // Assert
             registeredAssemblies.Should().NotBeEmpty();
             registeredAssemblies.All(a => a.FullName.Contains(partialName)).Should().BeTrue();
-        }      
+        }
     }
 }
