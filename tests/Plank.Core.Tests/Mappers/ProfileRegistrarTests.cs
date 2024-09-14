@@ -17,7 +17,6 @@ namespace Plank.Core.Tests.Mappers
         {
             _loggerMock = new Mock<ILog>();
             InitializeProfiles();
-            PlankMapperConfiguration.ClearRegisteredProfiles();
         }
 
         private void InitializeProfiles()
