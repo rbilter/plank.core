@@ -2,7 +2,7 @@
 
 namespace Plank.Core.Contracts
 {
-    public class PlankPostResponse<T> where T : IEntity, new()
+    public class PlankPostResponse<TEntity> where TEntity : IEntity, new()
     {
         public PlankPostResponse()
             : this([])
@@ -14,7 +14,7 @@ namespace Plank.Core.Contracts
             ValidationResults = validationResults;
         }
     
-        public T Item { get; set; } = new T();
+        public TEntity Item { get; set; } = new TEntity();
     
         public PlankValidationResultCollection ValidationResults { get; }
     }

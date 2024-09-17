@@ -1,6 +1,6 @@
 namespace Plank.Core.Contracts
 {
-    public class PlankBulkPostResponse<T>(IEnumerable<(T, PlankValidationResultCollection)> validationResults)
+    public class PlankBulkPostResponse<TEntity>(IEnumerable<(TEntity, PlankValidationResultCollection)> validationResults)
     {
         public PlankBulkPostResponse()
             : this([])
@@ -8,6 +8,6 @@ namespace Plank.Core.Contracts
 
         }
 
-        public IEnumerable<(T Item, PlankValidationResultCollection ValidationResults)> Items { get; } = validationResults;
+        public IEnumerable<(TEntity Item, PlankValidationResultCollection ValidationResults)> Items { get; } = validationResults;
     }
 }

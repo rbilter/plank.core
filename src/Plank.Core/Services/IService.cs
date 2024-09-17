@@ -2,7 +2,7 @@
 
 namespace Plank.Core.Services
 {
-    public interface IService<T> : IReadService<T>, IWriteService<T> where T : IEntity, new()
+    public interface IService<TEntity> : IReadService<TEntity>, IWriteService<TEntity> where TEntity : IEntity, new()
     {
     }
 }

@@ -2,19 +2,19 @@ using Plank.Core.Entities;
 
 namespace Plank.Core.Contracts
 {
-    public class PlankGetResponse<T> where T : IEntity, new()
+    public class PlankGetResponse<TEntity> where TEntity : IEntity, new()
     {
         public PlankGetResponse()
-            : this(new T())
+            : this(new TEntity())
         {
         }
 
-        public PlankGetResponse(T item)
+        public PlankGetResponse(TEntity item)
         {
             Item = item;
         }
 
-        public T Item { get; }
+        public TEntity Item { get; }
 
         public bool IsValid { get; set; }
 

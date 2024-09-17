@@ -1,6 +1,6 @@
 namespace Plank.Core.Contracts
 {
-    public class ApiEnumerableResponseDto<T> where T : IDto
+    public class ApiEnumerableResponseDto<TDto> where TDto : IDto
     {
         public bool HasNextPage { get; set; }
 
@@ -12,7 +12,7 @@ namespace Plank.Core.Contracts
 
         public bool IsValid { get; set; }
 
-        public IEnumerable<T> Items { get; set; } = [];
+        public IEnumerable<TDto> Items { get; set; } = [];
 
         public string Message { get; set; } = string.Empty;
 

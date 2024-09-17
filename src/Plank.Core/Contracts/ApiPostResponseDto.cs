@@ -1,8 +1,8 @@
 namespace Plank.Core.Contracts
 {
-    public class ApiPostResponseDto<T> where T : IDto
+    public class ApiPostResponseDto<TDto> where TDto : IDto
     {
-        public T Item { get; set; } = default!;
+        public TDto Item { get; set; } = default!;
 
         public ApiValidationResultsDto ValidationResults { get; set; } = [];
     }

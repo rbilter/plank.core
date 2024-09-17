@@ -1,13 +1,13 @@
 namespace Plank.Core.Data
 {
-    public interface IWriteRepository<T>
+    public interface IWriteRepository<TEntity>
     {
-        Task Add(T entity);
+        Task Add(TEntity entity);
 
-        Task BulkAdd(IEnumerable<T> entities);
+        Task BulkAdd(IEnumerable<TEntity> entities);
 
         Task Delete(int id);
 
-        Task Update(T entity);
+        Task Update(TEntity entity);
     }
 }

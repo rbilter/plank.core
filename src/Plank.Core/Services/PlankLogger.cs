@@ -1,10 +1,12 @@
 ﻿using log4net;
+using Plank.Core.Entities;
 
 namespace Plank.Core.Services
 {
-    public sealed class PlankLogger<T> : ILogger 
+    public sealed class PlankLogger<TEntity> : ILogger
+        where TEntity : IEntity
     {
-        private readonly ILog _logger = LogManager.GetLogger(typeof(T));
+        private readonly ILog _logger = LogManager.GetLogger(typeof(TEntity));
 
         public void ErrorMessage(object message)
         {

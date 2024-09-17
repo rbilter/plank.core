@@ -1,6 +1,6 @@
 namespace Plank.Core.Contracts
 {
-    public class PlankEnumerableResponse<T>
+    public class PlankEnumerableResponse<TEntity>
     {
         public bool HasNextPage { get; set; }
 
@@ -12,7 +12,7 @@ namespace Plank.Core.Contracts
 
         public bool IsValid { get; set; }
 
-        public IEnumerable<T> Items { get; set; } = [];
+        public IEnumerable<TEntity> Items { get; set; } = [];
 
         public string Message { get; set; } = string.Empty;
 

@@ -3,10 +3,10 @@ using X.PagedList;
 
 namespace Plank.Core.Data
 {
-    public interface IReadRepository<T>
+    public interface IReadRepository<TEntity>
     {
-        Task<T> Get(int id);
+        Task<TEntity> Get(int id);
 
-        Task<IPagedList<T>> Search(Expression<Func<T, bool>> filter, List<Expression<Func<T, object>>>? includes, int pageNumber, int pageSize);
+        Task<IPagedList<TEntity>> Search(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>>? includes, int pageNumber, int pageSize);
     }
 }

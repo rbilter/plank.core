@@ -18,12 +18,6 @@ namespace Plank.Core.Entities
                        .ToList();
         }
 
-        public static Dictionary<string, object> ToDictionary(this object item)
-        {
-            var json = item.ToJson();
-            return JsonConvert.DeserializeObject<Dictionary<string, object>>(json) ?? [];
-        }
-
         public static string ToJson(this object item, TypeNameHandling handling = TypeNameHandling.Auto)
         {
             var settings = new JsonSerializerSettings
@@ -34,12 +28,6 @@ namespace Plank.Core.Entities
             };
 
             return JsonConvert.SerializeObject(item, settings);
-        }
-
-        public static T ToObject<T>(this Dictionary<string, object> dictionary)
-        {
-            var json = dictionary.ToJson();
-            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static PlankValidationResultCollection Validate<TEntity>(this TEntity item) where TEntity : IEntity

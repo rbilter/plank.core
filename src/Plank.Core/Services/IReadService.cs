@@ -4,10 +4,10 @@ using Plank.Core.Entities;
 
 namespace Plank.Core.Services
 {
-    public interface IReadService<T> where T : IEntity, new()
+    public interface IReadService<TEntity> where TEntity : IEntity, new()
     {
-        Task<PlankGetResponse<T>> Get(int id);
+        Task<PlankGetResponse<TEntity>> Get(int id);
 
-        Task<PlankEnumerableResponse<T>> Search(Expression<Func<T, bool>> filter, List<Expression<Func<T, object>>> includes, int pageNumber, int pageSize);
+        Task<PlankEnumerableResponse<TEntity>> Search(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>> includes, int pageNumber, int pageSize);
     }
 }

@@ -1,7 +1,7 @@
 namespace Plank.Core.Contracts
 {
-    public class ApiBulkPostResponseDto<T> where T : IDto
+    public class ApiBulkPostResponseDto<TDto> where TDto : IDto
     {
-        public IEnumerable<(T Item, ApiValidationResultsDto ValidationResults)> Items { get; set; } = [];
+        public IEnumerable<(TDto Item, ApiValidationResultsDto ValidationResults)> Items { get; set; } = [];
     }
 }

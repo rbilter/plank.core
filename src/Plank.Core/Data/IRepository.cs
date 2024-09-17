@@ -1,9 +1,9 @@
 ﻿namespace Plank.Core.Data
 {
-    public interface IRepository<T> : IReadRepository<T>, IWriteRepository<T>
+    public interface IRepository<TEntity> : IReadRepository<TEntity>, IWriteRepository<TEntity>
     {
-        IRepository<T> NextRepository { get; }
+        IRepository<TEntity> NextRepository { get; }
 
-        IRepository<T> RegisterNext(IRepository<T> nextRepository);
+        IRepository<TEntity> RegisterNext(IRepository<TEntity> nextRepository);
     }
 }
